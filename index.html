@@ -115,7 +115,7 @@
 
                                 case "ph":
                                     let value = parseFloat(val["curr"]) + 0;
-                                    renderCard("pH", "", 6, 9, value, {min:6, max:7.0, color:"#ece696"}, {min:7.1, max:7.5, color:"#43bf58"}, {min:7.6, max:9, color:"#ff3b30"},1);
+                                    renderCard("pH", "", 6, 9, val["curr"], {min:6, max:7.0, color:"#e76a8c"}, {min:7.1, max:7.5, color:"#43bf58"}, {min:7.6, max:9, color:"#ff3b30"},1);
                                     break;
 
                             }
@@ -143,7 +143,7 @@
 
         function renderCard(title, label, min, max, current, low, good, high, decimals) {
             var card = $("<div class='card col-md-3 col-xs-12'></div>");
-            var title = $("<h3 style='text-align: center'>" + title + "</h3>");
+            var title = $("<h4 style='text-align: center'>" + title + "</h4>");
             var innerCard = $("<div class='card-content'></div>")
             var gageDiv = $("<div id='gg" + cards + "' class='gauge'></div>")
             innerCard.append(gageDiv);
