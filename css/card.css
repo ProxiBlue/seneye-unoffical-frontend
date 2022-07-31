@@ -7,7 +7,7 @@
   box-sizing: border-box;
   border-radius: 2px;
   background-clip: padding-box;
-  height: 200px;
+  height: 190px;
 }
 .card span.card-title {
     color: #fff;
