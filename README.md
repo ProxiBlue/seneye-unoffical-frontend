@@ -4,8 +4,16 @@ This is an alternative frontend to the seneye provided frontend. This is handy a
 
 This software is in a hideous unfinished state. Use at your own risk. It just about did the job for me, so I'm happy with it.
 
-You can try the software out at this address without downloading:
+Run using nginx docker:
 
-https://ribs85.github.io/seneye-unoffical-frontend/
+```
+docker run --restart always --name seneye-nginx -p 8080:80 -v /ABSOLUTE/PATH/TO/seneye-unoffical-frontend/:/usr/share/nginx/html:ro -d nginx
+```
 
-Or you can just download everything here, including the directories within, and just open the index.html file.
+The access : http://localhost:8080
+
+In this fork:
+
+Updated gauge js code to allow setting ranges of color in gauge
+Added to just load the first device (I only have one, suits my needs)
+Added auto full screen for device display (see: https://twitter.com/ProxiBlue/status/1553367729389809664)
