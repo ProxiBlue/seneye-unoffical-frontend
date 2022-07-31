@@ -106,16 +106,16 @@
                             console.log(i + "=" + val);
                             switch (i) {
                                 case "temperature":
-                                    renderCard("Temperature", "°C", 10, 25, val["curr"]);
+                                    renderCard("Temperature", "°C", 10, 25, val["curr"], {min:10, max:15, color:"#ff3b30"}, {min:16, max:20, color:"#43bf58"}, {min:21, max:25, color:"#ff3b30"}, 2);
                                     break;
 
                                 case "nh3":
-                                    renderCard("Ammonia", "ppm", 0.001, 0.050, val["curr"]);
+                                    renderCard("Ammonia", "ppm", 0.001, 0.050, val["curr"], {min:0.001, max:0.019, color:"#43bf58"}, {min:0.020, max:0.050, color:"#e76a8c"}, {min:0.051, max:0.500, color:"#ff3b30"}, 3);
                                     break;
 
                                 case "ph":
                                     let value = parseFloat(val["curr"]) + 0;
-                                    renderCard("pH", "", 6, 9, value);
+                                    renderCard("pH", "", 6, 9, value, {min:6, max:7.0, color:"#ece696"}, {min:7.1, max:7.5, color:"#43bf58"}, {min:7.6, max:9, color:"#ff3b30"},1);
                                     break;
 
                             }
@@ -138,14 +138,16 @@
             // auto refresh first tank every 5 mins.
             // I only have one tank, so it works fo now as an easy fix.
             setTimeout("switchTank(tanks[0].tankName);", 5*60000);
-            document.documentElement.webkitRequestFullScreen();
+            //document.documentElement.webkitRequestFullScreen();
         }
 
-        function renderCard(title, label, min, max, current) {
+        function renderCard(title, label, min, max, current, low, good, high, decimals) {
             var card = $("<div class='card col-md-3 col-xs-12'></div>");
+            var title = $("<h3 style='text-align: center'>" + title + "</h3>");
             var innerCard = $("<div class='card-content'></div>")
             var gageDiv = $("<div id='gg" + cards + "' class='gauge'></div>")
             innerCard.append(gageDiv);
+            card.append(title);
             card.append(innerCard);
             $("#cards").append(card);
             var cardGage = new JustGage({
@@ -153,9 +155,26 @@
                 value: current,
                 min: min,
                 max: max,
-                title: title,
                 label: label,
+                decimals: decimals,
                 humanFriendly: true,
+                humanFriendlyDecimal: decimals,
+                customSectors: {
+                    percents: false,
+                    ranges: [{
+                        color : low.color,
+                        lo : low.min,
+                        hi : low.max
+                    },{
+                        color : good.color,
+                        lo : good.min,
+                        hi : good.max
+                    },{
+                        color : high.color,
+                            lo : high.min,
+                            hi : high.max
+                    }]
+                }
             });
             cards++;
         }
@@ -222,7 +241,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     </form>
 </div>
-<div class="container" id="main" style="display: none">
+<div class="container" id="main" style="display: none; padding-left: 0;">
     <nav class="navbar navbar-light bg-faded" style="display:none">
         <h1 class="navbar-brand mb-0">Seneye</h1>
         <ul class="nav navbar-nav">
@@ -245,7 +264,7 @@
     </div>
 </div>
 <script src="js/raphael-2.1.4.min.js"></script>
-<script src="js/justgage.js"></script>
+<script src="js/justgage.min.js"></script>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/tether.min.js"></script>
 <script src="js/bootstrap-4.0.0-alpha5.min.js"></script>
