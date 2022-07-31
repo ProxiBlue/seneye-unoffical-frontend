@@ -138,7 +138,7 @@
             // auto refresh first tank every 5 mins.
             // I only have one tank, so it works fo now as an easy fix.
             setTimeout("switchTank(tanks[0].tankName);", 5*60000);
-            //document.documentElement.webkitRequestFullScreen();
+            document.documentElement.webkitRequestFullScreen();
         }
 
         function renderCard(title, label, min, max, current, low, good, high, decimals) {
