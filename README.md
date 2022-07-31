@@ -33,3 +33,7 @@ Each gauge can now have own ranges with defined colors
 
 * Added to just load the first device (I only have one, suits my needs)
 * Added auto full screen for device display (see: https://twitter.com/ProxiBlue/status/1553367729389809664)
+* Adjusted styles to fit clean into a small mobile
+
+![image](https://user-images.githubusercontent.com/4994260/182005665-0898a2d6-c5b9-44c7-bc0b-d5a8005925bb.png)
+
